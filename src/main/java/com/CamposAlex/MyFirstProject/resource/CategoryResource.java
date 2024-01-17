@@ -1,6 +1,5 @@
 package com.CamposAlex.MyFirstProject.resource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,7 @@ public class CategoryResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Category> findById(@PathVariable Long id){
-		Category cat = categoryRepository.findById(id);
+		Category cat = categoryRepository.findById(id).get();
 		return ResponseEntity.ok().body(cat);
 	}
 	
