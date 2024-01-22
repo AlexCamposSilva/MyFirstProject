@@ -31,6 +31,7 @@ public class ProductController {
 		return ResponseEntity.ok().body(list);
 	}
 	
+<<<<<<< HEAD:src/main/java/com/CamposAlex/MyFirstProject/controller/ProductController.java
 	
 
 	@GetMapping(value="/{id}")
@@ -40,6 +41,12 @@ public class ProductController {
 				
 				
 			
+=======
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<Product> findById(@PathVariable Long id){
+		Product obj = ProductRepository.findById(id).get();
+		return ResponseEntity.ok().body(obj);
+>>>>>>> d4f3f34ceae87512febb57a1b827f614e75b1e3e:src/main/java/com/CamposAlex/MyFirstProject/resource/ProductResource.java
 	}
 
 
