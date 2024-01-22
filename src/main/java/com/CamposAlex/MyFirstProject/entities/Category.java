@@ -14,25 +14,32 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Category implements Serializable{
+public class Category implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "category")
 	private List<Product> products = new ArrayList<>();
-	
-	public Category () {
-		
-	}
 
+	public Category() {
+
+	}
+	
 	public Category(Long id, String name) {
 		this.id = id;
 		this.name = name;
+	}
+
+	public Category(Long id, String name, List<Product> products) {
+		this.id = id;
+		this.name = name;
+		this.products = products;
 	}
 
 	public Long getId() {
@@ -46,20 +53,18 @@ public class Category implements Serializable{
 	public String getName() {
 		return name;
 	}
-	
-	
-
-	public List<Product> getProducts() {
-		return products;
-	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	public List<Product> getProducts() {
+		return products;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id, name);
 	}
 
 	@Override
@@ -71,13 +76,7 @@ public class Category implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(id, other.id) && Objects.equals(name, other.name);
 	}
-	
-	
-	
-	
-	
-	
 
 }

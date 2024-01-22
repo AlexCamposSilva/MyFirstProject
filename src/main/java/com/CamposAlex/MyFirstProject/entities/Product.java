@@ -10,34 +10,45 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+
 @Entity
 public class Product implements Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long Id;
 	private String name;
 	private Double price;
-	
+
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
+	
+	public Product() {
+		
+	}
+	
+	
 
 	public Product(Long id, String name, Double price, Category category) {
-		this.id = id;
+		
+		this.Id = id;
 		this.name = name;
 		this.price = price;
 		this.category = category;
 	}
 
+
+
 	public Long getId() {
-		return id;
+		return Id;
 	}
 
 	public void setId(Long id) {
-		this.id = id;
+		Id = id;
 	}
 
 	public String getName() {
@@ -60,13 +71,9 @@ public class Product implements Serializable {
 		return category;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(Id);
 	}
 
 	@Override
@@ -78,10 +85,8 @@ public class Product implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(Id, other.Id);
 	}
-	
-	
-	
+
 	
 }

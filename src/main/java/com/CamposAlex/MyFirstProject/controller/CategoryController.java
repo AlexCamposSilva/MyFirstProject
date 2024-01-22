@@ -1,4 +1,5 @@
-package com.CamposAlex.MyFirstProject.resource;
+package com.CamposAlex.MyFirstProject.controller;
+
 
 import java.util.List;
 
@@ -12,27 +13,31 @@ import org.springframework.web.bind.annotation.RestController;
 import com.CamposAlex.MyFirstProject.entities.Category;
 import com.CamposAlex.MyFirstProject.repository.CategoryRepository;
 
+
+
 @RestController
-@RequestMapping(value = "/categories")
-public class CategoryResource {
+@RequestMapping(value = "categories")
+public class CategoryController {
 	
 	@Autowired
 	private CategoryRepository categoryRepository;
-
-	@GetMapping
-	public ResponseEntity<List <Category>> findAll(){
-		List<Category> list = categoryRepository.findAll();
-		
 	
+	
+	@GetMapping
+	public ResponseEntity<List<Category>> findAll (){
+		List<Category> list = categoryRepository.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Category> findById(@PathVariable Long id){
-		Category cat = categoryRepository.findById(id).get();
-		return ResponseEntity.ok().body(cat);
+		Category obj = categoryRepository.findById(id).get();
+		return ResponseEntity.ok().body(obj);
+				
+				
+			
 	}
-	
-	
-	
+
+
+
 }
